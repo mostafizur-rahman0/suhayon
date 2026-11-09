@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SUHAYON — Official Website</title>
+<meta name="description" content="SUHAYON (সুহায়ন) is a youth-led voluntary social organization in Kishoreganj, Bangladesh. Education • Unity • Humanity.">
+<meta property="og:title" content="SUHAYON — Official Website">
+<meta property="og:image" content="logo.jpg">
+<link rel="icon" href="logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--y:#FDE506;--yd:#E9C900;--n:#0B1B5C;--ink:#16203D;--mut:#4A5470;--g:#F4F5F9;--line:#E1E4EE;--w:1080px}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.7 "Hind Siliguri",system-ui,sans-serif;color:var(--ink);background:#fff}
+a{color:var(--n)}
+:focus-visible{outline:3px solid var(--n);outline-offset:2px}
+.skip{position:absolute;left:-999px}.skip:focus{left:8px;top:8px;background:#fff;padding:8px;z-index:9}
+.wrap{max-width:var(--w);margin:0 auto;padding:0 18px}
+header{position:sticky;top:0;z-index:5;background:#fff;border-bottom:3px solid var(--y)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:60px}
+header img{height:44px;width:auto;display:block}
+nav ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:2px}
+nav a{display:block;padding:6px 10px;border-radius:6px;text-decoration:none;font-size:15px;font-weight:600}
+nav a:hover,nav a[aria-current]{background:var(--y)}
+#mb{display:none;background:var(--n);color:#fff;border:0;border-radius:6px;padding:8px 14px;font:inherit}
+@media(max-width:900px){#mb{display:block}nav{display:none;position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:3px solid var(--y);padding:8px 18px}nav.open{display:block}nav ul{flex-direction:column}}
+.hero{background:var(--y);padding:44px 0 56px}
+.hero .wrap{display:grid;gap:26px;align-items:center}
+@media(min-width:800px){.hero .wrap{grid-template-columns:1.1fr 1fr}}
+.hero img{width:100%;max-width:520px;height:auto;mix-blend-mode:multiply}
+.hero h1{font-size:clamp(28px,5vw,44px);line-height:1.2;margin:0 0 8px;color:var(--n)}
+.motto{font-weight:600;letter-spacing:.5px;margin:0}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.btn{display:inline-block;padding:11px 20px;border-radius:8px;font-weight:600;text-decoration:none;background:var(--n);color:#fff;border:2px solid var(--n)}
+.btn.o{background:transparent;color:var(--n)}
+.btn:hover{transform:translateY(-2px)}
+.ph{background:var(--n);color:#fff;padding:34px 0;border-bottom:6px solid var(--y)}
+.ph h1{margin:0;font-size:clamp(26px,4.5vw,38px)}.ph p{margin:6px 0 0;max-width:46em;opacity:.9}
+section.wrap{padding-top:34px;padding-bottom:10px}
+h2{font-size:24px;color:var(--n);margin:0 0 12px;padding-left:12px;border-left:6px solid var(--y)}
+h3{margin:0 0 4px;font-size:18px;color:var(--n)}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.card{background:var(--g);border:1px solid var(--line);border-top:4px solid var(--y);border-radius:8px;padding:14px 16px}
+.card small,.muted{color:var(--mut)}
+.stat{font-size:32px;font-weight:600;color:var(--n);line-height:1.1}
+.chip{display:inline-block;background:var(--y);color:var(--n);border-radius:99px;padding:1px 10px;font-size:13px;font-weight:600;margin-right:6px}
+ol.obj{padding-left:22px}ol.obj li{margin:4px 0}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;min-width:480px}
+th{background:var(--n);color:#fff;text-align:left}
+th,td{padding:9px 12px;border-bottom:1px solid var(--line)}
+tr:nth-child(even) td{background:var(--g)}
+.info{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));margin:0 0 18px}
+.info div{background:var(--y);border-radius:8px;padding:10px 14px}.info b{display:block;font-size:13px;color:var(--n)}
+.chart{text-align:center;max-width:560px;margin:8px auto}
+.node{border-radius:10px;padding:14px;font-weight:600}.node small{display:block;font-weight:400}
+.n1{background:var(--n);color:#fff}.n2{background:var(--y);color:var(--n)}
+.arrow{padding:8px;color:var(--mut);font-size:14px}
+.ph-img{background:repeating-linear-gradient(45deg,var(--g),var(--g) 10px,#fff 10px,#fff 20px);border:1px dashed #b9bfd2;border-radius:8px;aspect-ratio:4/3;display:grid;place-items:center;color:var(--mut);font-size:14px}
+.gal img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;display:block}
+form{display:grid;gap:10px;max-width:520px}
+label{font-weight:600;font-size:14px}
+input,textarea{width:100%;padding:10px;border:1px solid #b9bfd2;border-radius:8px;font:inherit}
+.note{background:#FFF9C7;border-left:5px solid var(--yd);padding:10px 14px;border-radius:6px;margin:14px 0}
+footer{background:var(--n);color:#e8ebf7;margin-top:46px;border-top:6px solid var(--y)}
+footer .wrap{padding-top:28px;padding-bottom:22px;display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+footer a{color:#fff}footer h3{color:var(--y)}footer ul{list-style:none;padding:0;margin:0;columns:2}
+.copy{grid-column:1/-1;border-top:1px solid #2b3b7d;padding-top:12px;font-size:14px}
+@media(prefers-reduced-motion:reduce){.btn:hover{transform:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#app">Skip to content</a>
+<header><div class="wrap">
+  <a href="#/home" aria-label="SUHAYON home"><img src="logo-wide.jpg" alt="সুহায়ন (SUHAYON)"></a>
+  <button id="mb" aria-expanded="false" aria-controls="nav">Menu</button>
+  <nav id="nav" aria-label="Main"><ul id="menu"></ul></nav>
+</div></header>
+<main id="app" tabindex="-1"></main>
+<footer id="foot"></footer>
+<noscript><p class="wrap">Please enable JavaScript to view this website.</p></noscript>
+<script src="data.js"></script>
+<script>
+const S=window.SITE,$=s=>document.querySelector(s);
+const h=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const NAV=[["home","Home"],["about","About Us"],["constitution","Constitution"],["standing","Standing Committee"],["executive","Executive Committee"],["activities","Activities"],["members","Members"],["announcements","Announcements"],["gallery","Gallery"],["contact","Contact"]];
+const ul=a=>`<ul>${a.map(x=>`<li>${h(x)}</li>`).join('')}</ul>`;
+const sec=(t,b)=>`<section class="wrap"><h2>${h(t)}</h2>${b}</section>`;
+const pg=(t,l,b)=>`<div class="ph"><div class="wrap"><h1>${h(t)}</h1>${l?`<p>${h(l)}</p>`:''}</div></div>${b}`;
+const chart=()=>`<div class="chart" role="img" aria-label="Standing Committee oversees the Executive Committee"><div class="node n1">Standing Committee<small>Oversight · constitutional protection · approves the Executive Committee</small></div><div class="arrow">↓ approval · investigation of serious irregularities · may propose cancellation</div><div class="node n2">Executive Committee<small>Day-to-day administration · programs · volunteers</small></div></div>`;
+const date=d=>{const x=new Date(d);return isNaN(x)?h(d):x.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})};
+const empty=m=>`<p class="note">${m}</p>`;
+const C=S.committee;
+const info=()=>`<div class="info"><div><b>Committee term</b>${h(C.term)}</div><div><b>Formation meeting</b>${h(C.meeting)}</div><div><b>Venue</b>${h(C.venue)}</div><div><b>Approval authority</b>${h(C.authority)}</div><div><b>Memo / Resolution No.</b>${h(C.memo)}</div></div>`;
+const table=()=>`<div class="scroll"><table><caption class="muted" style="text-align:left;padding:8px 12px">Some members hold more than one position.</caption><thead><tr><th>Sl.</th><th>Designation</th><th>Name</th></tr></thead><tbody>${C.members.map(m=>`<tr><td>${h(m[0])}</td><td>${h(m[1])}</td><td>${h(m[2])}</td></tr>`).join('')}</tbody></table></div>`;
+
+const R={
+home:()=>`<div class="hero"><div class="wrap"><div><h1>${h(S.name)} — ${h(S.bn)}</h1><p class="motto">${h(S.motto)}</p><p><b>${h(S.slogan)}</b></p><p>${h(S.intro)}</p><div class="btns"><a class="btn" href="#/about">Learn About Us</a><a class="btn o" href="#/activities">Explore Our Activities</a><a class="btn o" href="#/executive">Meet Our Committee</a><a class="btn o" href="#/contact">Contact Us</a></div></div><img src="logo.jpg" alt="সুহায়ন logo"></div></div>`
+ +sec('Our core principles',`<div class="grid">${S.principles.map(p=>`<div class="card"><h3>${h(p)}</h3></div>`).join('')}</div>`)
+ +sec('Social initiatives',`<div class="grid">${S.categories.map(c=>`<div class="card"><h3>${h(c)}</h3></div>`).join('')}</div>`)
+ +sec('At a glance',`<div class="grid"><div class="card"><div class="stat">${C.members.length}</div>Executive Committee positions</div><div class="card"><div class="stat">2 years</div>Executive Committee term</div><div class="card"><div class="stat">${S.principles.length}</div>Core principles</div></div><p class="muted">Activity and member counts will appear here once real data is added.</p>`)
+ +sec('Latest announcements',S.announcements.length?`<div class="grid">${S.announcements.slice(0,3).map(a=>`<div class="card"><small>${date(a.date)}</small><h3>${h(a.title)}</h3>${h(a.text)}</div>`).join('')}</div>`:empty('No announcements yet.'))
+ +sec('How we are organized',chart()+`<p style="text-align:center"><a href="#/standing">Standing Committee</a> · <a href="#/executive">Executive Committee</a></p>`),
+about:()=>pg('About Us','Who we are and why we exist.',sec('Introduction',`<p>${h(S.intro)}</p>`)+sec('Vision',`<p>${h(S.vision)}</p>`)+sec('Mission',`<p>${h(S.mission)}</p>`)+sec('Core principles',`<div class="grid">${S.principles.map(p=>`<div class="card"><h3>${h(p)}</h3></div>`).join('')}</div>`)+sec('Objectives',`<ol class="obj">${S.objectives.map(o=>`<li>${h(o)}</li>`).join('')}</ol>`)),
+constitution:()=>pg('Constitution (মূল পঠনতন্ত্র)','The official constitution of SUHAYON.',sec('Official document',`<p>The full approved constitution is available as a PDF. The website shows its chapters only and does not alter any clause.</p><p><a class="btn" href="${h(S.constitution.pdf)}" target="_blank" rel="noopener">Read the Constitution (PDF)</a></p>`)+sec('Chapters',`<ol class="obj" style="list-style:none;padding:0">${S.constitution.chapters.map(c=>`<li class="card" style="margin:6px 0">${h(c)}</li>`).join('')}</ol>`)),
+standing:()=>pg('Standing Committee','Oversight, accountability, and protection of the constitution.',sec('Responsibilities',ul(S.standing.responsibilities))+`<section class="wrap"><p class="note">The Standing Committee may <b>propose</b> cancellation of the Executive Committee. The final decision follows the organization's approved process.</p></section>`+sec('Members',`<div class="grid">${S.standing.members.map(m=>`<div class="card"><small>${h(m.role)}</small><h3>${m.name?h(m.name):'To be announced'}</h3></div>`).join('')}</div>`)+sec('Relationship with the Executive Committee',chart())),
+executive:()=>pg('Executive Committee','Approved committee for the 2026–2028 term.',sec('Committee details',info())+sec('Members',table())+sec('Structure',chart())),
+activities:()=>pg('Activities','Projects and programs of SUHAYON.',sec('Programs',S.activities.length?`<div class="grid">${S.activities.map(a=>`<article class="card">${a.image?`<img src="${h(a.image)}" alt="" style="width:100%;border-radius:6px">`:''}<span class="chip">${h(a.status||'')}</span><span class="chip">${h(a.category||'')}</span><h3>${h(a.title)}</h3><small>${date(a.date)} · ${h(a.place||'')}</small><p>${h(a.description||'')}</p></article>`).join('')}</div>`:empty('No activities have been published yet. Our areas of work are listed below.')+`<div class="grid">${S.categories.map(c=>`<div class="card"><h3>${h(c)}</h3></div>`).join('')}</div>`)),
+members:()=>pg('Members','Member directory.',sec('Directory',S.members.length?`<div class="grid">${S.members.map(m=>`<div class="card">${m.photo?`<img src="${h(m.photo)}" alt="" style="width:80px;height:80px;border-radius:50%;object-fit:cover">`:''}<h3>${h(m.name)}</h3><small>${h(m.role||'')}</small><p>${h(m.bio||'')}</p></div>`).join('')}</div>`:empty('The member directory will be published once members give permission. Committee members are listed on the <a href="#/executive">Executive Committee</a> page.'))),
+announcements:()=>pg('Announcements','Notices, meetings, and programs.',sec('Latest',S.announcements.length?`<div class="grid">${S.announcements.map(a=>`<div class="card"><small>${date(a.date)}</small><h3>${h(a.title)}</h3><p>${h(a.text)}</p></div>`).join('')}</div>`:empty('No announcements yet.'))),
+gallery:()=>pg('Gallery','Moments from our work.',sec('Photos',S.gallery.length?`<div class="grid gal">${S.gallery.map(g=>`<figure style="margin:0"><img src="${h(g.src)}" alt="${h(g.caption||'')}" loading="lazy"><figcaption class="muted">${h(g.caption||'')}</figcaption></figure>`).join('')}</div>`:`<p class="muted">Placeholders until real photos are added.</p><div class="grid">${['Social activities','Volunteer events','Organizational meetings','Environmental campaigns','Educational programs','Community work'].map(t=>`<div class="ph-img">${t}</div>`).join('')}</div>`)),
+contact:()=>pg('Contact Us','We would love to hear from you.',sec('Get in touch',`<p><b>${h(S.name)} (${h(S.bn)})</b><br>${h(S.place)}<br>Email: <a href="mailto:${h(S.email)}">${h(S.email)}</a></p><form id="cf"><div><label for="n">Name</label><input id="n" required></div><div><label for="e">Email</label><input id="e" type="email" required></div><div><label for="s">Subject</label><input id="s" required></div><div><label for="m">Message</label><textarea id="m" rows="5" required></textarea></div><button class="btn" type="submit">Send by email</button><p class="muted">This opens your email app with the message ready to send.</p></form>`))
+};
+function foot(){const f=['home','about','constitution','standing','executive','activities','gallery','contact'];$('#foot').innerHTML=`<div class="wrap"><div><h3>${h(S.name)} (${h(S.bn)})</h3><p>${h(S.motto)}<br><b>${h(S.slogan)}</b><br>${h(S.place)}<br>Email: <a href="mailto:${h(S.email)}">${h(S.email)}</a></p></div><div><h3>Links</h3><ul>${f.map(k=>`<li><a href="#/${k}">${h(NAV.find(n=>n[0]===k)[1])}</a></li>`).join('')}</ul></div><p class="copy">© ${h(S.name)}. All Rights Reserved.</p></div>`}
+function go(){const k=location.hash.replace(/^#\/?/,'')||'home',r=R[k]?k:'home',t=NAV.find(n=>n[0]===r)[1];
+ $('#app').innerHTML=R[r]();document.title=r==='home'?'SUHAYON — Official Website':t+' | SUHAYON';
+ document.querySelectorAll('#menu a').forEach(a=>a.toggleAttribute('aria-current',a.getAttribute('href')==='#/'+r));
+ $('#nav').classList.remove('open');$('#mb').setAttribute('aria-expanded','false');scrollTo(0,0);
+ const f=$('#cf');if(f)f.onsubmit=e=>{e.preventDefault();const v=i=>$('#'+i).value;location.href=`mailto:${S.email}?subject=${encodeURIComponent(v('s'))}&body=${encodeURIComponent(v('m')+'\n\n— '+v('n')+' ('+v('e')+')')}`}}
+$('#menu').innerHTML=NAV.map(n=>`<li><a href="#/${n[0]}">${n[1]}</a></li>`).join('');
+$('#mb').onclick=()=>{const o=$('#nav').classList.toggle('open');$('#mb').setAttribute('aria-expanded',o)};
+foot();addEventListener('hashchange',go);go();
+</script>
+</body>
+</html>

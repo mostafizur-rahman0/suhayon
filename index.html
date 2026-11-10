@@ -70,59 +70,118 @@ footer .wrap{padding-top:28px;padding-bottom:22px;display:grid;gap:20px;grid-tem
 footer a{color:#fff}footer h3{color:var(--y)}footer ul{list-style:none;padding:0;margin:0;columns:2}
 .copy{grid-column:1/-1;border-top:1px solid #2b3b7d;padding-top:12px;font-size:14px}
 @media(prefers-reduced-motion:reduce){.btn:hover{transform:none}}
+
+.lang{border:2px solid var(--n);background:#fff;color:var(--n);border-radius:99px;padding:4px 12px;font:600 14px "Hind Siliguri",sans-serif;cursor:pointer}
+.tools{display:flex;align-items:center;gap:8px}
+.don{background:var(--n);color:#fff!important;border-radius:99px;padding:6px 14px;font-weight:600;text-decoration:none;font-size:14px;white-space:nowrap}
+.join{background:var(--y);color:var(--n)!important;border-radius:99px;padding:6px 14px;font-weight:600;text-decoration:none;font-size:14px;white-space:nowrap;border:2px solid var(--n)}
+.fab{position:fixed;right:14px;bottom:14px;z-index:6;box-shadow:0 4px 14px #0005;padding:12px 20px;font-size:16px}
+@media(min-width:900px){.fab{display:none}}
+@media(max-width:560px){.join{display:none}header img{height:38px}}
+.pcard{background:#fff;border:1px solid var(--line);border-bottom:4px solid var(--y);border-radius:12px;overflow:hidden}
+.ph3{position:relative;aspect-ratio:3/4;background:var(--y);display:grid;place-items:center;font-size:56px;color:var(--n);font-weight:600}
+.ph3 img,.act img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pb{padding:10px 12px}.pb h3{margin:0}
+.grid.p{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+.act{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:4/3;background:var(--g)}
+.act .cap{position:absolute;left:0;right:0;bottom:0;padding:34px 14px 12px;color:#fff;background:linear-gradient(transparent,#000b)}
+.act .cap h3{color:#fff;margin:2px 0}.act .cap p{margin:2px 0 0;font-size:14px}
+.grid.a{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.band{background:var(--y);border-radius:12px;padding:20px 22px;margin:8px 0}
+.band h3{font-size:22px;margin:0}
+.num{display:inline-flex;gap:8px;align-items:center;background:#fff;border-radius:8px;padding:6px 8px 6px 12px;margin:4px 6px 4px 0}
+.num .lang{padding:2px 10px;font-size:13px}
 </style>
 </head>
 <body>
-<a class="skip" href="#app">Skip to content</a>
+<a class="skip" id="sk" href="#app">Skip to content</a>
 <header><div class="wrap">
   <a href="#/home" aria-label="SUHAYON home"><img src="logo-wide.jpg" alt="সুহায়ন (SUHAYON)"></a>
-  <button id="mb" aria-expanded="false" aria-controls="nav">Menu</button>
+  <div class="tools"><a class="join" id="jn" href="#"></a><a class="don" id="dn" href="#/donate"></a><button class="lang" id="lg"></button><button id="mb" aria-expanded="false" aria-controls="nav"></button></div>
   <nav id="nav" aria-label="Main"><ul id="menu"></ul></nav>
 </div></header>
 <main id="app" tabindex="-1"></main>
 <footer id="foot"></footer>
+<a class="don fab" id="fab" href="#/donate"></a>
 <noscript><p class="wrap">Please enable JavaScript to view this website.</p></noscript>
 <script src="data.js"></script>
 <script>
 const S=window.SITE,$=s=>document.querySelector(s);
+let L='en';try{L=localStorage.getItem('sl')||'en'}catch(e){}
+const T=x=>x&&typeof x==='object'&&!Array.isArray(x)&&'en' in x?(x[L]||x.en):x;
+const D={home:["Home","হোম"],about:["About Us","আমাদের সম্পর্কে"],constitution:["Constitution","পঠনতন্ত্র"],standing:["Standing Committee","স্থায়ী কমিটি"],executive:["Executive Committee","কার্যনির্বাহী কমিটি"],activities:["Activities","কার্যক্রম"],members:["Members","সদস্য"],announcements:["Announcements","বিজ্ঞপ্তি"],gallery:["Gallery","গ্যালারি"],contact:["Contact","যোগাযোগ"],donate:["Donate","দান করুন"],join:["Become a Member","সদস্য হোন"],
+menu:["Menu","মেনু"],lang:["বাংলা","English"],skip:["Skip to content","মূল অংশে যান"],learn:["Learn About Us","আমাদের সম্পর্কে জানুন"],meet:["Meet Our Committee","কমিটির সদস্যরা"],
+hPrin:["Our core principles","আমাদের মূলনীতি"],hInit:["Areas of work","কাজের ক্ষেত্র"],hAct:["Our activities","আমাদের কার্যক্রম"],hGl:["At a glance","এক নজরে"],hAnn:["Latest announcements","সর্বশেষ বিজ্ঞপ্তি"],hOrg:["How we are organized","আমরা যেভাবে সংগঠিত"],
+pos:["Executive Committee positions","কার্যনির্বাহী কমিটির পদ"],y2:["2 years","২ বছর"],termL:["Executive Committee term","কার্যনির্বাহী কমিটির মেয়াদ"],prin:["Core principles","মূলনীতি"],
+actEmpty:["Activity photos will appear here when our programs begin.","আমাদের কার্যক্রম শুরু হলে এখানে কার্যক্রমের ছবি দেখা যাবে।"],noAnn:["No announcements yet.","এখনও কোনো বিজ্ঞপ্তি নেই।"],
+c1:["Standing Committee","স্থায়ী কমিটি"],c1s:["Oversight · constitutional protection · approves the Executive Committee","তদারকি · পঠনতন্ত্র রক্ষা · কার্যনির্বাহী কমিটির অনুমোদন"],car:["↓ approval · investigation of serious irregularities · may propose cancellation","↓ অনুমোদন · গুরুতর অনিয়মের তদন্ত · বাতিলের প্রস্তাব দিতে পারে"],c2:["Executive Committee","কার্যনির্বাহী কমিটি"],c2s:["Day-to-day administration · programs · volunteers","দৈনন্দিন পরিচালনা · কর্মসূচি · স্বেচ্ছাসেবক"],
+aboutL:["Who we are and why we exist.","আমরা কারা এবং কেন আছি।"],hIntro:["Introduction","পরিচিতি"],hVis:["Vision","ভিশন"],hMis:["Mission","মিশন"],hObj:["Objectives","উদ্দেশ্য"],
+consL:["The official constitution of SUHAYON.","সুহায়নের অনুমোদিত পঠনতন্ত্র।"],hDoc:["Official document","অফিসিয়াল নথি"],consP:["The full approved constitution is available as a PDF. The website shows its chapters only and does not alter any clause.","সম্পূর্ণ অনুমোদিত পঠনতন্ত্র PDF আকারে আছে। ওয়েবসাইটে শুধু অধ্যায়ের তালিকা দেখানো হয়েছে, কোনো ধারা বদলানো হয়নি।"],consB:["Read the Constitution (PDF)","পঠনতন্ত্র পড়ুন (PDF)"],hCh:["Chapters","অধ্যায়সমূহ"],
+stL:["Oversight, accountability, and protection of the constitution.","তদারকি, জবাবদিহি ও পঠনতন্ত্র রক্ষা।"],hResp:["Responsibilities","দায়িত্বসমূহ"],stN:["The Standing Committee may propose cancellation of the Executive Committee. The final decision follows the organization's approved process.","স্থায়ী কমিটি কার্যনির্বাহী কমিটি বাতিলের প্রস্তাব দিতে পারে। চূড়ান্ত সিদ্ধান্ত সংগঠনের অনুমোদিত প্রক্রিয়া অনুযায়ী হবে।"],hMem:["Members","সদস্যবৃন্দ"],tba:["To be announced","শীঘ্রই জানানো হবে"],hRel:["Relationship with the Executive Committee","কার্যনির্বাহী কমিটির সঙ্গে সম্পর্ক"],
+exL:["Approved committee for the 2026–2028 term.","২০২৬–২০২৮ মেয়াদের অনুমোদিত কমিটি।"],hDet:["Committee details","কমিটির তথ্য"],iT:["Committee term","কমিটির মেয়াদ"],iM:["Formation meeting","গঠন সভা"],iV:["Venue","স্থান"],iA:["Approval authority","অনুমোদনকারী কর্তৃপক্ষ"],iR:["Memo / Resolution No.","স্মারক / সিদ্ধান্ত নম্বর"],dup:["Some members hold more than one position.","কয়েকজন সদস্য একাধিক পদে আছেন।"],hSt:["Structure","কাঠামো"],
+acL:["Projects and programs of SUHAYON.","সুহায়নের প্রকল্প ও কর্মসূচি।"],acE:["No activities have been published yet. Our areas of work are listed below.","এখনও কোনো কার্যক্রম প্রকাশ করা হয়নি। আমাদের কাজের ক্ষেত্রগুলো নিচে দেওয়া হলো।"],
+meL:["Member directory.","সদস্য তালিকা।"],meE:["The member directory will be published once members give permission. Committee members are on the Executive Committee page.","সদস্যদের অনুমতি পেলে সদস্য তালিকা প্রকাশ করা হবে। কমিটির সদস্যদের দেখুন কার্যনির্বাহী কমিটি পাতায়।"],
+anL:["Notices, meetings, and programs.","বিজ্ঞপ্তি, সভা ও কর্মসূচি।"],gaL:["Moments from our work.","আমাদের কাজের মুহূর্ত।"],gaP:["Placeholders until real photos are added.","আসল ছবি যোগ না হওয়া পর্যন্ত ফাঁকা স্থান।"],
+coL:["We would love to hear from you.","আপনার কথা শুনতে চাই।"],hGet:["Get in touch","যোগাযোগ"],fN:["Name","নাম"],fE:["Email","ইমেইল"],fS:["Subject","বিষয়"],fM:["Message","বার্তা"],fSend:["Send by email","ইমেইলে পাঠান"],fNote:["This opens your email app with the message ready to send.","এটি আপনার ইমেইল অ্যাপ খুলে বার্তাটি পাঠানোর জন্য তৈরি করে দেবে।"],
+dT:["Support our mission","আমাদের কাজে সহযোগিতা করুন"],dX:["Your donation helps young volunteers work for education, humanity, and unity in Kishoreganj.","আপনার দান কিশোরগঞ্জে তরুণ স্বেচ্ছাসেবীদের শিক্ষা, মানবতা ও ঐক্যের কাজে সহায়তা করে।"],dM:["How to donate","কীভাবে দান করবেন"],dL:["Every contribution helps.","প্রতিটি অনুদান সহায়তা করে।"],dH:["Send Money to either number below, using the bKash or Nagad app.","নিচের যেকোনো নম্বরে বিকাশ বা নগদ অ্যাপ থেকে Send Money করুন।"],dE:["You can email the transaction ID to","চাইলে ট্রানজেকশন আইডি ইমেইল করতে পারেন:"],soon:["Donation details will be added soon.","দানের তথ্য শীঘ্রই যোগ করা হবে।"],copy:["Copy","কপি"],copied:["Copied","কপি হয়েছে"],
+jT:["Join SUHAYON","সুহায়নে যোগ দিন"],jX:["Fill in the online membership form to apply.","অনলাইন সদস্যপদ ফর্ম পূরণ করে আবেদন করুন।"],
+fl:["Links","লিংক"],rights:["All Rights Reserved.","সর্বস্বত্ব সংরক্ষিত।"]};
+const d=k=>(D[k]||[k,k])[L==='bn'?1:0];
 const h=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const NAV=[["home","Home"],["about","About Us"],["constitution","Constitution"],["standing","Standing Committee"],["executive","Executive Committee"],["activities","Activities"],["members","Members"],["announcements","Announcements"],["gallery","Gallery"],["contact","Contact"]];
-const ul=a=>`<ul>${a.map(x=>`<li>${h(x)}</li>`).join('')}</ul>`;
+const NAV=['home','about','constitution','standing','executive','activities','members','announcements','gallery','contact','donate'];
+const ul=a=>`<ul>${a.map(x=>`<li>${h(T(x))}</li>`).join('')}</ul>`;
 const sec=(t,b)=>`<section class="wrap"><h2>${h(t)}</h2>${b}</section>`;
 const pg=(t,l,b)=>`<div class="ph"><div class="wrap"><h1>${h(t)}</h1>${l?`<p>${h(l)}</p>`:''}</div></div>${b}`;
-const chart=()=>`<div class="chart" role="img" aria-label="Standing Committee oversees the Executive Committee"><div class="node n1">Standing Committee<small>Oversight · constitutional protection · approves the Executive Committee</small></div><div class="arrow">↓ approval · investigation of serious irregularities · may propose cancellation</div><div class="node n2">Executive Committee<small>Day-to-day administration · programs · volunteers</small></div></div>`;
-const date=d=>{const x=new Date(d);return isNaN(x)?h(d):x.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})};
-const empty=m=>`<p class="note">${m}</p>`;
+const note=m=>`<p class="note">${m}</p>`;
+const when=x=>{const y=new Date(x);return isNaN(y)?h(x):y.toLocaleDateString(L==='bn'?'bn-BD':'en-GB',{day:'numeric',month:'long',year:'numeric'})};
+const chart=()=>`<div class="chart" role="img" aria-label="${h(d('c1'))} → ${h(d('c2'))}"><div class="node n1">${d('c1')}<small>${d('c1s')}</small></div><div class="arrow">${d('car')}</div><div class="node n2">${d('c2')}<small>${d('c2s')}</small></div></div>`;
+const pcard=(src,role,name,ini)=>`<div class="pcard"><div class="ph3"><span>${h(ini||String(name).trim()[0])}</span><img src="${h(src)}" alt="" loading="lazy" onerror="this.remove()"></div><div class="pb"><h3>${h(name)}</h3><small>${h(role)}</small></div></div>`;
+const act=a=>`<article class="act">${a.image?`<img src="${h(a.image)}" alt="${h(T(a.title))}" loading="lazy">`:''}<div class="cap"><span class="chip">${h(T(a.status)||'')}</span><h3>${h(T(a.title))}</h3><small>${when(a.date)} · ${h(T(a.place)||'')}</small>${a.description?`<p>${h(T(a.description))}</p>`:''}</div></article>`;
+const G=[["Social activities","সামাজিক কার্যক্রম"],["Volunteer events","স্বেচ্ছাসেবী আয়োজন"],["Organizational meetings","সাংগঠনিক সভা"],["Environmental campaigns","পরিবেশ ক্যাম্পেইন"],["Educational programs","শিক্ষা কর্মসূচি"],["Community work","কমিউনিটি কাজ"]];
+const tiles=n=>`<div class="grid a">${G.slice(0,n).map(g=>`<div class="ph-img">${g[L==='bn'?1:0]}</div>`).join('')}</div>`;
+const nums=()=>{const o=S.donate||{};return [['bKash',o.bkash],['Nagad',o.nagad]].filter(x=>x[1]).map(x=>`<span class="num">${x[0]}: <b>${h(x[1])}</b> <button class="lang" data-c="${h(x[1])}">${d('copy')}</button></span>`).join('')||`<p>${d('soon')}</p>`};
+const band=()=>`<div class="band"><h3>${d('dT')}</h3><p>${d('dX')}</p><div>${nums()}</div><div class="btns"><a class="btn" href="#/donate">${d('dM')}</a></div></div>`;
+const joinBand=()=>`<div class="band" style="background:var(--n);color:#fff"><h3 style="color:var(--y)">${d('jT')}</h3><p>${d('jX')}</p><a class="btn" style="background:var(--y);color:var(--n);border-color:var(--y)" href="${h(S.joinUrl)}" target="_blank" rel="noopener">${d('join')}</a></div>`;
 const C=S.committee;
-const info=()=>`<div class="info"><div><b>Committee term</b>${h(C.term)}</div><div><b>Formation meeting</b>${h(C.meeting)}</div><div><b>Venue</b>${h(C.venue)}</div><div><b>Approval authority</b>${h(C.authority)}</div><div><b>Memo / Resolution No.</b>${h(C.memo)}</div></div>`;
-const table=()=>`<div class="scroll"><table><caption class="muted" style="text-align:left;padding:8px 12px">Some members hold more than one position.</caption><thead><tr><th>Sl.</th><th>Designation</th><th>Name</th></tr></thead><tbody>${C.members.map(m=>`<tr><td>${h(m[0])}</td><td>${h(m[1])}</td><td>${h(m[2])}</td></tr>`).join('')}</tbody></table></div>`;
-
+const info=()=>`<div class="info"><div><b>${d('iT')}</b>${h(C.term)}</div><div><b>${d('iM')}</b>${h(C.meeting)}</div><div><b>${d('iV')}</b>${h(T(C.venue))}</div><div><b>${d('iA')}</b>${h(T(C.authority))}</div><div><b>${d('iR')}</b>${h(T(C.memo))}</div></div>`;
+const cards=()=>`<p class="muted">${d('dup')}</p><div class="grid p">${C.members.map(m=>pcard(m[3]||`m${m[0]}.jpg`,T(m[1]),m[2])).join('')}</div>`;
 const R={
-home:()=>`<div class="hero"><div class="wrap"><div><h1>${h(S.name)} — ${h(S.bn)}</h1><p class="motto">${h(S.motto)}</p><p><b>${h(S.slogan)}</b></p><p>${h(S.intro)}</p><div class="btns"><a class="btn" href="#/about">Learn About Us</a><a class="btn o" href="#/activities">Explore Our Activities</a><a class="btn o" href="#/executive">Meet Our Committee</a><a class="btn o" href="#/contact">Contact Us</a></div></div><img src="logo.jpg" alt="সুহায়ন logo"></div></div>`
- +sec('Our core principles',`<div class="grid">${S.principles.map(p=>`<div class="card"><h3>${h(p)}</h3></div>`).join('')}</div>`)
- +sec('Social initiatives',`<div class="grid">${S.categories.map(c=>`<div class="card"><h3>${h(c)}</h3></div>`).join('')}</div>`)
- +sec('At a glance',`<div class="grid"><div class="card"><div class="stat">${C.members.length}</div>Executive Committee positions</div><div class="card"><div class="stat">2 years</div>Executive Committee term</div><div class="card"><div class="stat">${S.principles.length}</div>Core principles</div></div><p class="muted">Activity and member counts will appear here once real data is added.</p>`)
- +sec('Latest announcements',S.announcements.length?`<div class="grid">${S.announcements.slice(0,3).map(a=>`<div class="card"><small>${date(a.date)}</small><h3>${h(a.title)}</h3>${h(a.text)}</div>`).join('')}</div>`:empty('No announcements yet.'))
- +sec('How we are organized',chart()+`<p style="text-align:center"><a href="#/standing">Standing Committee</a> · <a href="#/executive">Executive Committee</a></p>`),
-about:()=>pg('About Us','Who we are and why we exist.',sec('Introduction',`<p>${h(S.intro)}</p>`)+sec('Vision',`<p>${h(S.vision)}</p>`)+sec('Mission',`<p>${h(S.mission)}</p>`)+sec('Core principles',`<div class="grid">${S.principles.map(p=>`<div class="card"><h3>${h(p)}</h3></div>`).join('')}</div>`)+sec('Objectives',`<ol class="obj">${S.objectives.map(o=>`<li>${h(o)}</li>`).join('')}</ol>`)),
-constitution:()=>pg('Constitution (মূল পঠনতন্ত্র)','The official constitution of SUHAYON.',sec('Official document',`<p>The full approved constitution is available as a PDF. The website shows its chapters only and does not alter any clause.</p><p><a class="btn" href="${h(S.constitution.pdf)}" target="_blank" rel="noopener">Read the Constitution (PDF)</a></p>`)+sec('Chapters',`<ol class="obj" style="list-style:none;padding:0">${S.constitution.chapters.map(c=>`<li class="card" style="margin:6px 0">${h(c)}</li>`).join('')}</ol>`)),
-standing:()=>pg('Standing Committee','Oversight, accountability, and protection of the constitution.',sec('Responsibilities',ul(S.standing.responsibilities))+`<section class="wrap"><p class="note">The Standing Committee may <b>propose</b> cancellation of the Executive Committee. The final decision follows the organization's approved process.</p></section>`+sec('Members',`<div class="grid">${S.standing.members.map(m=>`<div class="card"><small>${h(m.role)}</small><h3>${m.name?h(m.name):'To be announced'}</h3></div>`).join('')}</div>`)+sec('Relationship with the Executive Committee',chart())),
-executive:()=>pg('Executive Committee','Approved committee for the 2026–2028 term.',sec('Committee details',info())+sec('Members',table())+sec('Structure',chart())),
-activities:()=>pg('Activities','Projects and programs of SUHAYON.',sec('Programs',S.activities.length?`<div class="grid">${S.activities.map(a=>`<article class="card">${a.image?`<img src="${h(a.image)}" alt="" style="width:100%;border-radius:6px">`:''}<span class="chip">${h(a.status||'')}</span><span class="chip">${h(a.category||'')}</span><h3>${h(a.title)}</h3><small>${date(a.date)} · ${h(a.place||'')}</small><p>${h(a.description||'')}</p></article>`).join('')}</div>`:empty('No activities have been published yet. Our areas of work are listed below.')+`<div class="grid">${S.categories.map(c=>`<div class="card"><h3>${h(c)}</h3></div>`).join('')}</div>`)),
-members:()=>pg('Members','Member directory.',sec('Directory',S.members.length?`<div class="grid">${S.members.map(m=>`<div class="card">${m.photo?`<img src="${h(m.photo)}" alt="" style="width:80px;height:80px;border-radius:50%;object-fit:cover">`:''}<h3>${h(m.name)}</h3><small>${h(m.role||'')}</small><p>${h(m.bio||'')}</p></div>`).join('')}</div>`:empty('The member directory will be published once members give permission. Committee members are listed on the <a href="#/executive">Executive Committee</a> page.'))),
-announcements:()=>pg('Announcements','Notices, meetings, and programs.',sec('Latest',S.announcements.length?`<div class="grid">${S.announcements.map(a=>`<div class="card"><small>${date(a.date)}</small><h3>${h(a.title)}</h3><p>${h(a.text)}</p></div>`).join('')}</div>`:empty('No announcements yet.'))),
-gallery:()=>pg('Gallery','Moments from our work.',sec('Photos',S.gallery.length?`<div class="grid gal">${S.gallery.map(g=>`<figure style="margin:0"><img src="${h(g.src)}" alt="${h(g.caption||'')}" loading="lazy"><figcaption class="muted">${h(g.caption||'')}</figcaption></figure>`).join('')}</div>`:`<p class="muted">Placeholders until real photos are added.</p><div class="grid">${['Social activities','Volunteer events','Organizational meetings','Environmental campaigns','Educational programs','Community work'].map(t=>`<div class="ph-img">${t}</div>`).join('')}</div>`)),
-contact:()=>pg('Contact Us','We would love to hear from you.',sec('Get in touch',`<p><b>${h(S.name)} (${h(S.bn)})</b><br>${h(S.place)}<br>Email: <a href="mailto:${h(S.email)}">${h(S.email)}</a></p><form id="cf"><div><label for="n">Name</label><input id="n" required></div><div><label for="e">Email</label><input id="e" type="email" required></div><div><label for="s">Subject</label><input id="s" required></div><div><label for="m">Message</label><textarea id="m" rows="5" required></textarea></div><button class="btn" type="submit">Send by email</button><p class="muted">This opens your email app with the message ready to send.</p></form>`))
+home:()=>`<div class="hero"><div class="wrap"><div><h1>${h(S.name)} — ${h(S.bn)}</h1><p class="motto">${h(T(S.motto))}</p><p><b>${h(T(S.slogan))}</b></p><p>${h(T(S.intro))}</p><div class="btns"><a class="btn" href="${h(S.joinUrl)}" target="_blank" rel="noopener">${d('join')}</a><a class="btn" style="background:#fff;color:var(--n)" href="#/donate">${d('donate')}</a><a class="btn o" href="#/about">${d('learn')}</a><a class="btn o" href="#/executive">${d('meet')}</a></div></div><img src="logo.jpg" alt="সুহায়ন logo"></div></div>`
+ +sec(d('hAct'),S.activities.length?`<div class="grid a">${S.activities.slice(0,6).map(act).join('')}</div><p><a href="#/activities">${d('activities')} →</a></p>`:note(d('actEmpty'))+tiles(3))
+ +`<section class="wrap">${band()}</section>`
+ +sec(d('hPrin'),`<div class="grid">${S.principles.map(p=>`<div class="card"><h3>${h(T(p))}</h3></div>`).join('')}</div>`)
+ +sec(d('hInit'),`<div class="grid">${S.categories.map(c=>`<div class="card"><h3>${h(T(c))}</h3></div>`).join('')}</div>`)
+ +sec(d('hGl'),`<div class="grid"><div class="card"><div class="stat">${C.members.length}</div>${d('pos')}</div><div class="card"><div class="stat">${d('y2')}</div>${d('termL')}</div><div class="card"><div class="stat">${S.principles.length}</div>${d('prin')}</div></div>`)
+ +sec(d('hAnn'),S.announcements.length?`<div class="grid">${S.announcements.slice(0,3).map(a=>`<div class="card"><small>${when(a.date)}</small><h3>${h(T(a.title))}</h3>${h(T(a.text))}</div>`).join('')}</div>`:note(d('noAnn')))
+ +`<section class="wrap">${joinBand()}</section>`
+ +sec(d('hOrg'),chart()),
+about:()=>pg(d('about'),d('aboutL'),sec(d('hIntro'),`<p>${h(T(S.intro))}</p>`)+sec(d('hVis'),`<p>${h(T(S.vision))}</p>`)+sec(d('hMis'),`<p>${h(T(S.mission))}</p>`)+sec(d('hPrin'),`<div class="grid">${S.principles.map(p=>`<div class="card"><h3>${h(T(p))}</h3></div>`).join('')}</div>`)+sec(d('hObj'),`<ol class="obj">${S.objectives.map(o=>`<li>${h(T(o))}</li>`).join('')}</ol>`)+`<section class="wrap">${joinBand()}</section>`),
+constitution:()=>pg(d('constitution'),d('consL'),sec(d('hDoc'),`<p>${d('consP')}</p><p><a class="btn" href="${h(S.constitution.pdf)}" target="_blank" rel="noopener">${d('consB')}</a></p>`)+sec(d('hCh'),`<ol class="obj" style="list-style:none;padding:0">${S.constitution.chapters.map(c=>`<li class="card" style="margin:6px 0">${h(c)}</li>`).join('')}</ol>`)),
+standing:()=>pg(d('standing'),d('stL'),sec(d('hResp'),ul(S.standing.responsibilities))+`<section class="wrap">${note(d('stN'))}</section>`+sec(d('hMem'),`<div class="grid p">${S.standing.members.map((m,i)=>pcard(m.photo||`s${i+1}.jpg`,T(m.role),m.name||d('tba'),m.name?'':'?')).join('')}</div>`)+sec(d('hRel'),chart())),
+executive:()=>pg(d('executive'),d('exL'),sec(d('hDet'),info())+sec(d('hMem'),cards())+sec(d('hSt'),chart())),
+activities:()=>pg(d('activities'),d('acL'),sec(d('hAct'),S.activities.length?`<div class="grid a">${S.activities.map(act).join('')}</div>`:note(d('acE'))+tiles(3))+sec(d('hInit'),`<div class="grid">${S.categories.map(c=>`<div class="card"><h3>${h(T(c))}</h3></div>`).join('')}</div>`)),
+members:()=>pg(d('members'),d('meL'),sec(d('hMem'),S.members.length?`<div class="grid p">${S.members.map(m=>pcard(m.photo||'x.jpg',T(m.role)||'',m.name)).join('')}</div>`:note(d('meE')))+`<section class="wrap">${joinBand()}</section>`),
+announcements:()=>pg(d('announcements'),d('anL'),sec(d('hAnn'),S.announcements.length?`<div class="grid">${S.announcements.map(a=>`<div class="card"><small>${when(a.date)}</small><h3>${h(T(a.title))}</h3><p>${h(T(a.text))}</p></div>`).join('')}</div>`:note(d('noAnn')))),
+gallery:()=>pg(d('gallery'),d('gaL'),sec(d('gallery'),S.gallery.length?`<div class="grid a gal">${S.gallery.map(g=>`<figure style="margin:0"><img src="${h(g.src)}" alt="${h(T(g.caption)||'')}" loading="lazy"><figcaption class="muted">${h(T(g.caption)||'')}</figcaption></figure>`).join('')}</div>`:`<p class="muted">${d('gaP')}</p>`+tiles(6))),
+contact:()=>pg(d('contact'),d('coL'),sec(d('hGet'),`<p><b>${h(S.name)} (${h(S.bn)})</b><br>${h(T(S.place))}<br>Email: <a href="mailto:${h(S.email)}">${h(S.email)}</a></p><form id="cf"><div><label for="n">${d('fN')}</label><input id="n" required></div><div><label for="e">${d('fE')}</label><input id="e" type="email" required></div><div><label for="s">${d('fS')}</label><input id="s" required></div><div><label for="m">${d('fM')}</label><textarea id="m" rows="5" required></textarea></div><button class="btn" type="submit">${d('fSend')}</button><p class="muted">${d('fNote')}</p></form>`)),
+donate:()=>pg(d('donate'),d('dL'),sec(d('dT'),`<p>${d('dX')}</p><div class="band"><p>${d('dH')}</p><div>${nums()}</div><p>${d('dE')} <a href="mailto:${h(S.email)}">${h(S.email)}</a></p></div>`))
 };
-function foot(){const f=['home','about','constitution','standing','executive','activities','gallery','contact'];$('#foot').innerHTML=`<div class="wrap"><div><h3>${h(S.name)} (${h(S.bn)})</h3><p>${h(S.motto)}<br><b>${h(S.slogan)}</b><br>${h(S.place)}<br>Email: <a href="mailto:${h(S.email)}">${h(S.email)}</a></p></div><div><h3>Links</h3><ul>${f.map(k=>`<li><a href="#/${k}">${h(NAV.find(n=>n[0]===k)[1])}</a></li>`).join('')}</ul></div><p class="copy">© ${h(S.name)}. All Rights Reserved.</p></div>`}
-function go(){const k=location.hash.replace(/^#\/?/,'')||'home',r=R[k]?k:'home',t=NAV.find(n=>n[0]===r)[1];
- $('#app').innerHTML=R[r]();document.title=r==='home'?'SUHAYON — Official Website':t+' | SUHAYON';
+function chrome(){
+ $('#menu').innerHTML=NAV.filter(k=>k!=='donate').map(k=>`<li><a href="#/${k}">${d(k)}</a></li>`).join('');
+ $('#lg').textContent=d('lang');$('#dn').textContent='♥ '+d('donate');$('#fab').textContent='♥ '+d('donate');$('#mb').textContent=d('menu');$('#sk').textContent=d('skip');
+ const j=$('#jn');j.textContent=d('join');j.href=S.joinUrl;j.target='_blank';j.rel='noopener';
+ document.documentElement.lang=L;
+ const f=['home','about','constitution','standing','executive','activities','gallery','contact','donate'];
+ $('#foot').innerHTML=`<div class="wrap"><div><h3>${h(S.name)} (${h(S.bn)})</h3><p>${h(T(S.motto))}<br><b>${h(T(S.slogan))}</b><br>${h(T(S.place))}<br>Email: <a href="mailto:${h(S.email)}">${h(S.email)}</a></p></div><div><h3>${d('fl')}</h3><ul>${f.map(k=>`<li><a href="#/${k}">${d(k)}</a></li>`).join('')}<li><a href="${h(S.joinUrl)}" target="_blank" rel="noopener">${d('join')}</a></li></ul></div><p class="copy">© ${h(S.name)}. ${d('rights')}</p></div>`}
+function go(keep){const y=scrollY,k=location.hash.replace(/^#\/?/,'')||'home',r=R[k]?k:'home';
+ $('#app').innerHTML=R[r]();document.title=r==='home'?'SUHAYON — Official Website':d(r)+' | SUHAYON';
  document.querySelectorAll('#menu a').forEach(a=>a.toggleAttribute('aria-current',a.getAttribute('href')==='#/'+r));
- $('#nav').classList.remove('open');$('#mb').setAttribute('aria-expanded','false');scrollTo(0,0);
+ $('#nav').classList.remove('open');$('#mb').setAttribute('aria-expanded','false');scrollTo(0,keep===true?y:0);
  const f=$('#cf');if(f)f.onsubmit=e=>{e.preventDefault();const v=i=>$('#'+i).value;location.href=`mailto:${S.email}?subject=${encodeURIComponent(v('s'))}&body=${encodeURIComponent(v('m')+'\n\n— '+v('n')+' ('+v('e')+')')}`}}
-$('#menu').innerHTML=NAV.map(n=>`<li><a href="#/${n[0]}">${n[1]}</a></li>`).join('');
 $('#mb').onclick=()=>{const o=$('#nav').classList.toggle('open');$('#mb').setAttribute('aria-expanded',o)};
-foot();addEventListener('hashchange',go);go();
+$('#lg').onclick=()=>{L=L==='bn'?'en':'bn';try{localStorage.setItem('sl',L)}catch(e){}chrome();go(true)};
+document.addEventListener('click',e=>{const c=e.target.dataset&&e.target.dataset.c;if(c&&navigator.clipboard)navigator.clipboard.writeText(c).then(()=>{e.target.textContent=d('copied')})});
+chrome();addEventListener('hashchange',()=>go());go();
 </script>
 </body>
 </html>
